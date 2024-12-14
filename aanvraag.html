@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanvraag - Beveiligingsbedrijf</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<header>
+    <h1><img src="img/spark security Informatie v2.png" alt=""></h1>
+    <nav>
+        <ul>
+            <ul class="navbar-menu">
+                <a href="index.html" class="navbar-link">Home</a>
+                <a href="informatie.html" class="navbar-link">Informatie</a>
+                <a href="aanvraag.html" class="navbar-link">Aanvraag</a>
+                <a href="solliciteren.html" class="navbar-link">Solliciteren</a>
+            </ul>
+            
+        </ul>
+    </nav>
+</header>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<section>
+    <h2>Maak een aanvraag</h2>
+    <form id="aanvraagForm">
+        <label for="naam">Naam:</label>
+        <input type="text" id="naam" name="naam" required><br>
+
+        <label for="discordId">Discord ID:</label>
+        <input type="text" id="discordId" name="discordId" required><br>
+
+        <label for="telefoonNummer">Telefoonnummer:</label>
+        <input type="tel" id="telefoonNummer" name="telefoonNummer" required><br>
+
+        <label for="soortAanvraag">Soort aanvraag:</label>
+        <select id="soortAanvraag" name="soortAanvraag" required>
+            <option value="persoonsbeveiliging">Persoonsbeveiliging</option>
+            <option value="feestbeveiliging">Feestbeveiliging</option>
+            <option value="ingangbeveiliging">Ingangbeveiliging</option>
+            <option value="goederentransport">Goederen transport</option>
+            <option value="groepbeveiliging">Groep beveiliging</option>
+            <option value="goederenbeveiliging">Goederen beveiliging</option>
+        </select><br>
+
+        <label for="omschrijving">Omschrijving van de aanvraag:</label>
+        <textarea id="omschrijving" name="omschrijving" required></textarea><br>
+
+        <button type="submit">Verstuur aanvraag</button>
+        
+    </form>
+</section>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<footer>
+    <p>&copy; 2024 Spark security. Alle rechten voorbehouden.</p>
+</footer>
+
+<script>
+document.getElementById("aanvraagForm").addEventListener("submit", function(event) {
+    // Prevent the form from submitting the traditional way
+    event.preventDefault();
+
+    // Get form values
+    const naam = document.getElementById("naam").value;
+    const discordId = document.getElementById("discordId").value;
+    const telefoonNummer = document.getElementById("telefoonNummer").value;
+    const soortAanvraag = document.getElementById("soortAanvraag").value;
+    const omschrijving = document.getElementById("omschrijving").value;
+
+    // Check if all fields are filled (simple validation)
+    if (naam === "" || discordId === "" || telefoonNummer === "" || omschrijving === "") {
+        alert("Vul alstublieft alle velden in.");
+        return;
+    }
+
+    // Prepare the message content for Discord
+    const message = {
+        content: `Nieuwe aanvraag:\n**Naam:** ${naam}\n**Discord ID:** ${discordId}\n**Telefoonnummer:** ${telefoonNummer}\n**Soort aanvraag:** ${soortAanvraag}\n**Omschrijving:** ${omschrijving}`,
+    };
+
+    // Your Discord Webhook URL (replace this with your actual Webhook URL)
+    const webhookUrl = 'https://discordapp.com/api/webhooks/1317509001612627978/KRt5TTXiuG-4cIfykuEFBqIz0_nTPJs9w6shofk0racXjKzFCBUC2QCAHKckvOUm_26a';
+
+    // Send the data to Discord via the Webhook
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(message),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response (optional)
+        console.log('Success:', data);
+
+        // Show a confirmation to the user
+        alert("Uw aanvraag is succesvol verzonden naar Discord!");
+
+        // Clear the form after submission
+        document.getElementById("aanvraagForm").reset();
+    })
+    .catch((error) => {
+        // Handle errors if any
+        console.error('Error:', error);
+        alert("er word zsm contact opgenomen met u zorg dat u in de discord zit");
+    });
+});
+</script>
+</body>
+</html>

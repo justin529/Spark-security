@@ -1,0 +1,303 @@
+/* Algemene reset voor de styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header en Navigatiebalk Styling */
+header {
+    background-color: #606060; /* Blauwe kleur voor de navigatiebalk */
+    position: fixed; /* Blijft bovenaan de pagina */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Zorg ervoor dat de navbar boven andere elementen komt */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); /* Diepe schaduw voor luxe uitstraling */
+    padding: 10px 0;
+}
+
+/* Navbar Container (bevat logo en menu) */
+.navbar-container {
+    display: flex;
+    justify-content: center; /* Alles horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+    padding: 10px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Logo Styling */
+.navbar-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+    color: #8a2be2; /* Paarse kleur bij hover voor een subtiele overgang */
+}
+
+/* Navbar Menu Styling */
+.navbar-menu {
+    display: flex;
+    justify-content: center; /* Menu-items gecentreerd in de container */
+    gap: 30px; /* Vergrote afstand tussen de menu-items */
+    list-style-type: none; /* Verwijder de standaard lijststijl */
+    margin: 0; /* Verwijder marge */
+    padding: 0; /* Verwijder padding */
+}
+
+.navbar-link {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 12px 18px;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #000000; /* Paarse lijn onder de link */
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.navbar-link:hover {
+    background-color: #444444; /* Donkerder zwart bij hover */
+    color: #fff;
+}
+
+.navbar-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Mobile Menu Toggle (Hamburger Menu) */
+.navbar-toggle {
+    display: none; /* Standaard verborgen voor grotere schermen */
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.navbar-toggle .bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Menu voor Mobiele Apparaten */
+@media (max-width: 768px) {
+    /* Verberg standaard de navigatielinks */
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        background-color: #1a1a1a;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        border-radius: 12px;
+        z-index: 999;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg);
+        position: relative;
+        top: 8px;
+    }
+
+    .navbar-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg);
+        position: relative;
+        top: -8px;
+    }
+
+    .navbar-container {
+        justify-content: center; /* Zorg ervoor dat de logo en het menu gecentreerd zijn op mobiel */
+    }
+
+    /* Responsief aanpassing voor de navbar-menu, in het midden */
+    .navbar-menu {
+        position: fixed; /* Fixeer het menu bovenaan bij mobiel */
+        top: 70px;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        padding: 20px;
+        background-color: #606060; /* Blauwe kleur voor het menu */
+    }
+}
+
+/* Body styling */
+body {
+    background-color: #f4f4f4; /* Lichte achtergrondkleur */
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center; /* Horizontaal centreren */
+    align-items: center; /* Verticaal centreren */
+    flex-direction: column;
+    height: 100vh; /* Zorgt ervoor dat de body de volledige hoogte van het scherm inneemt */
+    padding: 0;
+}
+
+/* Zorg ervoor dat de sectie niet onder de header komt */
+section {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    margin-top: 120px; /* Zorgt ervoor dat er ruimte is voor de vaste header */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer styling */
+footer {
+    margin-top: 40px;
+    background-color: #1a1a1a;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 8px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+
+/* Formulier styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+input[type="text"], input[type="number"], textarea, select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    width: 100%;
+    background-color: #f7f7f7;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus effecten voor inputvelden */
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+    border-color: #8a2be2;
+    outline: none;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Zoekbalk Styling */
+input[type="text"] {
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+input[type="text"]:focus {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+/* Knoppen styling */
+button {
+    background-color: #8a2be2; /* Paarse kleur voor knoppen */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out, box-shadow 0.3s ease;
+    width: 100%;
+    max-width: 220px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #6a1b9a; /* Donkerder paarse tint bij hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Responsief ontwerp voor mobiele apparaten */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    section {
+        padding: 30px;
+        margin-top: 120px;
+    }
+
+    form {
+        gap: 20px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
